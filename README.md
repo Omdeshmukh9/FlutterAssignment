@@ -19,7 +19,6 @@ App made as Assignment for Intenship
 "flutter run"
 ## Screenshots
 
-![App Screenshot](https://drive.google.com/file/d/1pRKuugQhe4Zn_81n-BaQhemrio-xdLSl/view?usp=drive_link)
-![App Screenshot](https://drive.google.com/file/d/1_MtLWfIooDRw5k5vCILKcGtUILi2b1UJ/view?usp=drive_link)
-![App Screenshot](https://drive.google.com/file/d/1K0jWJzxQ_ry46aBUWkx8gfRGVbuDOmZm/view?usp=sharing)
-
+![Screenshot_20240207-004316_firstflutter](https://github.com/Omdeshmukh9/firstflutter/assets/87648154/16fe76a8-e3aa-4222-9a4c-23efdc480baf)
+![Screenshot_20240207-004308_firstflutter](https://github.com/Omdeshmukh9/firstflutter/assets/87648154/c58c43ad-4804-41b1-ab64-5c97c2c11ef0)
+![Screenshot_20240207-004311_firstflutter](https://github.com/Omdeshmukh9/firstflutter/assets/87648154/44f601b3-457b-4c42-8f2c-2859b679d67d)
