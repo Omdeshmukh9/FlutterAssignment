@@ -17,3 +17,9 @@ App made as Assignment for Intenship
 #4. Connect a device or start an emulator: Ensure you have a physical device connected via USB or an emulator running.
 #5.Run the app: Use the flutter run command to run the app on the connected device or emulator.
 "flutter run"
+## Screenshots
+
+![App Screenshot](https://drive.google.com/file/d/1pRKuugQhe4Zn_81n-BaQhemrio-xdLSl/view?usp=drive_link)
+![App Screenshot](https://drive.google.com/file/d/1_MtLWfIooDRw5k5vCILKcGtUILi2b1UJ/view?usp=drive_link)
+![App Screenshot](https://drive.google.com/file/d/1K0jWJzxQ_ry46aBUWkx8gfRGVbuDOmZm/view?usp=sharing)
+
