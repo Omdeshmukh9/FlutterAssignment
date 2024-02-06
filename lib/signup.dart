@@ -1,3 +1,4 @@
+import 'package:firstflutter/homepage.dart';
 import 'package:flutter/material.dart';
 
 class signup extends StatefulWidget {
@@ -8,129 +9,158 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assests/signup.png'),fit:BoxFit.cover)),
-    child: Scaffold(
-    backgroundColor: Colors.transparent,
-    body: Stack(
-    children: [
-    Container(
-
-    padding: EdgeInsets.only(top: 100,left: 35),
-    child: Text('Welcome'
-    ,style: TextStyle(color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold)
-    ),
-    ),
-      Container(
-        padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.36,right :35,left: 35),
-        child: Text(
-          'Register',style: TextStyle(color: Colors.blue,
-          fontWeight: FontWeight.bold,fontSize: 45),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assests/blur.png'),
+          fit: BoxFit.cover,
         ),
       ),
-      SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.45,right :35,left: 35),
-          child: Column(
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      hintText: 'Username',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      )
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Stack(
+            children: [
+              Positioned(
+                top: 100,
+                left: 65,
+                child: Text(
+                  'Welcome',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 60,
                   ),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      )
+              ),
+              Positioned(
+                top: 170,
+                left: 35,
+                child: Text(
+                  '',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 45,
                   ),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      )
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-
-                GestureDetector(
-                  onTap: () {
-                  },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 200),
+                child: SingleChildScrollView(
                   child: Container(
-                    width: double.infinity,
-                    height: 45,
+                    margin: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child:  Text(
-                        "SignUp",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
                         ),
-                      ),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Center(
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: 'Username',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => myhome()),
+                          );
+                          },
+                          child: Container(
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Sign Up",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Already have an account?"),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                      },
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
-
+              ),
+            ],
+          ),
         ),
-      )
-
-
-    ],
-
-    ),
-    ),
+      ),
     );
   }
 }
