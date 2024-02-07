@@ -48,7 +48,7 @@ class _myhomeState extends State<myhome> {
                         backgroundColor: Colors.blue,
                         backgroundImage: AssetImage('assets/user_pic.jpg'),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 19),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

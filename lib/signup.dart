@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstflutter/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,43 @@ class _signupState extends State<signup> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> signUp(BuildContext context) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      print("User signed up successfully!");
+      // Navigate to the next screen or show a success message
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => myhome()),
+      );
+    } on FirebaseAuthException catch (e) {
+      print("Failed to sign up: ${e.message}");
+      // Handle errors
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(e.message ?? "An error occurred"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      print("Error: $e");
+    }
   }
 
   @override
@@ -93,7 +131,7 @@ class _signupState extends State<signup> {
                         ),
                         SizedBox(height: 20),
                         TextField(
-
+                          controller: _usernameController,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -105,6 +143,7 @@ class _signupState extends State<signup> {
                         ),
                         SizedBox(height: 20),
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -116,6 +155,7 @@ class _signupState extends State<signup> {
                         ),
                         SizedBox(height: 20),
                         TextField(
+                          controller:_passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
@@ -128,12 +168,7 @@ class _signupState extends State<signup> {
                         ),
                         SizedBox(height: 20),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => myhome()),
-                          );
-                          },
+                          onTap: () => signUp(context),
                           child: Container(
                             height: 45,
                             decoration: BoxDecoration(

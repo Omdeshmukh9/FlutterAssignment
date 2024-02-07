@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstflutter/homepage.dart';
 import 'package:firstflutter/signup.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,54 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> signIn(BuildContext context) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      print("User signed in successfully!");
+      // Navigate to the next screen or show a success message
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => myhome()),
+      );
+
+    } on FirebaseAuthException catch (e) {
+      print("Failed to sign in: ${e.message}");
+      // Handle errors
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(e.message ?? "An error occurred"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +82,7 @@ class _MyLoginState extends State<MyLogin> {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 60, // Adjust the font size as needed
+                    fontSize: 60,
                   ),
                 ),
               ),
@@ -45,12 +94,12 @@ class _MyLoginState extends State<MyLogin> {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 60, // Adjust the font size as needed
+                    fontSize: 60,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 270), // Adjust this value as needed
+                padding: const EdgeInsets.only(top: 270),
                 child: SingleChildScrollView(
                   child: Container(
                     margin: EdgeInsets.all(20),
@@ -76,12 +125,13 @@ class _MyLoginState extends State<MyLogin> {
                             style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
-                              fontSize: 30, // Adjust the font size as needed
+                              fontSize: 30,
                             ),
                           ),
                         ),
                         SizedBox(height: 20),
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -93,6 +143,7 @@ class _MyLoginState extends State<MyLogin> {
                         ),
                         SizedBox(height: 20),
                         TextField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
@@ -105,12 +156,7 @@ class _MyLoginState extends State<MyLogin> {
                         ),
                         SizedBox(height: 20),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => myhome()),
-                            );
-                          },
+                          onTap: () => signIn(context),
                           child: Container(
                             height: 45,
                             decoration: BoxDecoration(
