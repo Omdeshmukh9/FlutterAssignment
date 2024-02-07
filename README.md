@@ -2,7 +2,8 @@
 # Flutter Intern Assignment by Bynry
 
 App made as Assignment for Intenship 
-
+Has good Ui
+firebase authetication implemented for login and signup
 
 ## How to intsall 
  To run a Flutter project from a GitHub link, you can follow these steps:
